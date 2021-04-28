@@ -1,0 +1,18 @@
+
+<=
+>=
+<
+>
+#
+do
+while
+procedur
+.
+,
+const a=9;
+var in8=10;
+const b=76;
+(
+)
+>
+<

@@ -1,0 +1,13 @@
+1 const
+2 var
+3 procedur
+4 begin
+5 end
+6 odd
+7 if
+8 then
+9 call
+10 while
+11 do
+12 read
+13 write
