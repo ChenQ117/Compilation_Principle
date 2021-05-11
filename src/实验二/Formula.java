@@ -37,12 +37,16 @@ public class Formula {
         if (!select.isEmpty()){
             return select;
         }
+        //将产生式右部的第一个元素的firs集加入select
         select.addAll(rightNodes[0].getFirst());
-        if (rightNodes[0].produceNull){
-            select.addAll(rightNodes[0].getFollow(formulaMap));
-        }
+
+        //如果产生式右部的第一个元素为空，则加上产生式左部的follow集
         if (rightNodes[0].left.equals("ε")){
             select.addAll(leftNode.getFollow(formulaMap));
+        }
+        //判断产生式右部的开头结点有多少个能推出空，将产生式右部能推出空的结点的first集加入
+        if (rightNodes[0].produceNull){
+            select.addAll(rightNodes[0].getFollow(formulaMap));
         }
         select.remove("ε");
         return select;

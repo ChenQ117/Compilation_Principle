@@ -13,11 +13,11 @@ import java.util.regex.Pattern;
  * @Date: 2021/3/31 on 8:37
  */
 public class One {
-    HashMap<String, String> keyword_map = new HashMap<>();
-    HashMap<String, String> operatorword_map = new HashMap<>();
-    HashMap<String, String> boundaryword_map = new HashMap<>();
-    HashMap<String, String> identifyword_map = new HashMap<>();
-    HashMap<String, String> numberword_map = new HashMap<>();
+    public HashMap<String, String> keyword_map = new HashMap<>();
+    public HashMap<String, String> operatorword_map = new HashMap<>();
+    public HashMap<String, String> boundaryword_map = new HashMap<>();
+    public HashMap<String, String> identifyword_map = new HashMap<>();
+    public HashMap<String, String> numberword_map = new HashMap<>();
     Set<String> set = new HashSet<>();
     int identifyflag = 0;
     int numberflag = 0;
@@ -151,6 +151,12 @@ public class One {
                 }
 
             }
+            if (s[i].equals("+")){
+                if (s[i-1].equals("+")){
+                    s[i-1] = s[i-1]+"+";
+                    s[i] = "";
+                }
+            }
         }
         return s;
     }
@@ -164,6 +170,9 @@ public class One {
                 regex = "["+map.get(key)+"]";
             }else {
                 regex = map.get(key);
+                if (map.get(key).equals("++")){
+                    regex = "//++";
+                }
             }
             s = content.split(regex);
             if (s.length>=1)

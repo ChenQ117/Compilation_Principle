@@ -100,7 +100,7 @@ public class NonTerminalNode extends Node {
         }
     }
     @Override
-    public Set<String> getFollow(Map<Node,Formula[]> formulaMap){
+    public Set<String> getFollow(Map<Node,Formula[]> formulaMap) {
         if (!left.equals("E")&&!follow.isEmpty()){
             //如果之前求过follow集则不需要再求了，可以直接返回，E非终结符除外，因为E在初始化时follow加入了”#“
             return follow;
@@ -128,16 +128,34 @@ public class NonTerminalNode extends Node {
                                 if (formulas[i].rightNodes[j+1].getFirst().contains("ε")){
                                     follow.remove("ε");
                                 }
-                                //如果右边的第一个能推出空，则加上其follow集
-                                if (formulas[i].rightNodes[j+1].produceNull){
-                                    follow.addAll(formulas[i].rightNodes[j+1].getFollow(formulaMap));
+                                //判断其后的结点是否能推出空，如果能则加入其后结点的first集并继续向后判断，直到不能推出空为止
+                                int k = j+1;
+                                for (;k<formulas[i].rightNodes.length-1;k++){
+                                    if (formulas[i].rightNodes[k].produceNull){
+                                        follow.addAll(formulas[i].rightNodes[k+1].getFirst());
+                                    }else {
+                                        break;
+                                    }
                                 }
+                                //如果其后的所有结点都能推出空的话，则加入产生式左部的follow集
+                                if (k == formulas[i].rightNodes.length-1&&formulas[i].rightNodes[k].produceNull){
+                                    if (!node.equals(this)){
+                                        //该判断必须存在，否则会进入死递归，例如E1→+ T E1
+                                        follow.addAll(node.getFollow(formulaMap));
+                                    }
+                                }
+                                //如果右边的第一个能推出空，则加上其follow集
+                                /*if (formulas[i].rightNodes[j+1].produceNull){
+                                    follow.addAll(formulas[i].rightNodes[j+1].getFollow(formulaMap));
+                                }*/
                             }
                         }
                     }
                 }
             }
         }
+        //follow集里不含空
+        follow.remove("ε");
         return follow;
     }
 

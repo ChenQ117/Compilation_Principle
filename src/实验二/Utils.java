@@ -100,6 +100,10 @@ public class Utils {
             }else {
                 //不相等的话则找该输入串首元素和栈顶元素在分析表中对应的表达式
                 Node[] analysisChart = getAnalysisChart(chars[i], stack.peek(), nodeMap, formulaMap);
+                if (analysisChart == null){
+                    System.out.println("匹配失败");
+                    break;
+                }
                 printProcess(stack,chars,i);
                 Node popNode = stack.pop();//弹出栈顶元素
 
