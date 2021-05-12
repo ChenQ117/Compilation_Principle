@@ -22,16 +22,21 @@ public class One {
     int identifyflag = 0;
     int numberflag = 0;
 
-    public One() {
-        init();
+    String keywordPath;
+    String operatorwordPath;
+    String boundarywordPath;
+    String identifywordPath;
+    String numberwordPath;
+    public One(String keywordPath,String operatorwordPath, String boundarywordPath,String identifywordPath,String numberwordPath) {
+        init(keywordPath,operatorwordPath,boundarywordPath,identifywordPath,numberwordPath);
     }
 
-    public void init() {
-        readFile("Txt\\KeyWord.txt", keyword_map);
-        readFile("Txt\\OperatorWord.txt", operatorword_map);
-        readFile("Txt\\BoundarySymbolWord.txt", boundaryword_map);
-        readFile("Txt\\IdentifyWord.txt", identifyword_map);
-        readFile("Txt\\NumberWord.txt", numberword_map);
+    public void init(String keywordPath,String operatorwordPath, String boundarywordPath,String identifywordPath,String numberwordPath) {
+        readFile(keywordPath, keyword_map);
+        readFile(operatorwordPath, operatorword_map);
+        readFile(boundarywordPath, boundaryword_map);
+        readFile(identifywordPath, identifyword_map);
+        readFile(numberwordPath, numberword_map);
     }
 
     //将文件中的数据读取到map集合中
@@ -81,7 +86,7 @@ public class One {
                 return key;
             } else {
                 identifyword_map.put(String.valueOf(++identifyflag), word);
-                writeToFile("Txt\\IdentifyWord.txt", identifyflag, word);
+                writeToFile(identifywordPath, identifyflag, word);
                 return String.valueOf(identifyflag);
             }
         } else {
@@ -97,7 +102,7 @@ public class One {
                 return key;
             } else {
                 numberword_map.put(String.valueOf(++numberflag), word);
-                writeToFile("Txt\\NumberWord.txt", numberflag, word);
+                writeToFile(numberwordPath, numberflag, word);
                 return String.valueOf(numberflag);
             }
         } else {

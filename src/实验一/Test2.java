@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
  */
 public class Test2 {
     public static void main(String[] args) {
-        One one = new One();
-        String[] strings = one.readTxt("Txt\\TextFile2.txt");
+        One one = new One("Txt/实验一文件/KeyWord.txt","Txt/实验一文件/OperatorWord.txt","Txt/实验一文件/BoundarySymbolWord.txt","Txt/实验一文件/IdentifyWord.txt","Txt/实验一文件/NumberWord.txt");
+        String[] strings = one.readTxt("Txt/实验一文件/TextFile2.txt");
         for (String key :strings){
             System.out.println(key);
         }
@@ -90,9 +90,9 @@ public class Test2 {
                 "       r >= m-q*n;\n" +
                 "       m =n;\n" +
                 "       n > r;";
-        One one = new One();
-        String contract = one.contract(content, one.operatorword_map);
-        System.out.println(contract);
+//        One one = new One();
+//        String contract = one.contract(content, one.operatorword_map);
+//        System.out.println(contract);
         //判断“<=" ">=" ":="的情况
         /*if(map.get(key).equals("=")){
                         if(s[i].endsWith("<")||s[i].endsWith(">")||s[i].endsWith(":")){

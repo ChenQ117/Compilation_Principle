@@ -16,7 +16,7 @@ import java.util.Stack;
  */
 public class Test {
     public static void main(String[] args) {
-        One one = new One();
+        One one = new One("Txt/实验四文件/KeyWord.txt","Txt/实验四文件/OperatorWord.txt","Txt/实验四文件/BoundarySymbolWord.txt","Txt/实验四文件/IdentifyWord.txt","Txt/实验四文件/NumberWord.txt");
         Stack<String> stackBound = new Stack<>();//存花括号
         Stack<AnaFormula> anaFormulaStack = new Stack<>();//存未完全确定的四元式
         List<AnaFormula> anaFormulas=new ArrayList<>();//用于存储所有的四元式
